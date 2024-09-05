@@ -2,8 +2,6 @@ import { useRef, useState } from "react";
 import Modal from "./Modal";
 import { motion, AnimatePresence } from "framer-motion";
 
-
-
 type Props = {
   currentBalance: number | undefined;
   setCurrentBalance: React.Dispatch<React.SetStateAction<number | undefined>>;
@@ -45,7 +43,6 @@ export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
       if(newBalance<0){
         alert("Insufficient Cashback");
       }     
-  
     }
   };
 
@@ -54,8 +51,8 @@ export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
       setCurrentBalance(0);
       setShowModal(true)
         setModalContent(
-          "Conratulations! You have successfully converted your cashbacks into Promo code for your future bookings."
-        )
+          `Conratulations! You have successfully converted your ${currentBalance} cashbacks into Promo code for your future bookings`
+        );
     } else {
       alert("Insufficient Cashback");
     }
