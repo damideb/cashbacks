@@ -4,9 +4,8 @@ A simple web application to track cashback earned from bookings.
 
 ## Table of Contents
 - [Installation](#installation)
-- [Usage](#usage)
 - [Features](#features)
-- [Contributing](#contributing)
+
 
 ## Installation
 
@@ -22,12 +21,12 @@ cd cashback-history-app
 # Install dependencies
 npm install
 
-## Features
+## features
 
 - View Total Cashbacks earned
-- view Current balance
+- View Current balance
 - view cashback history and details
-- Withdraw cashback to bank or convert to promo
+- Withdraw cashback to the bank or convert to promo
 -Pagination
 
 
