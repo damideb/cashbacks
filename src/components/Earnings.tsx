@@ -20,27 +20,27 @@ export default function Earnings({currentBalance, totalCashbacks, setCurrentBala
 
   return (
     <motion.section
-      className=" flex justify-between  mt-10   mb-20 items-start"
+      className=" flex md:flex-row justify-center items-center flex-col gap-5 md:justify-between  mt-10   mb-20 md:items-start"
       variants={animate}
       initial="hidden"
       animate="visible"
     >
-      <section className=" flex gap-2 ">
+      <section className=" flex flex-col sm:flex-row gap-2 ">
         <div className=" bg-blue w-[250px] h-[200px]  text-white font-sans rounded shadow-lg drop-shadow-md grid place-content-center">
-          <h3 className="  text-2xl font-bold py-4">Total Cashbacks:</h3>
-          <p className=" text-xl text-center">
+          <h3 className="  text-xl  py-4">Total Cashbacks:</h3>
+          <p className=" text-2xl font-bold text-center">
             ₦ {totalCashbacks?.toLocaleString()}
           </p>
         </div>
         <div className=" bg-blue w-[250px] h-[200px] text-white font-sans rounded shadow-lg drop-shadow-md grid place-content-center">
-          <h3 className="  text-2xl font-bold py-4">Current Balance:</h3>
-          <p className=" text-xl text-center">
+          <h3 className="  text-xl py-4">Current Balance:</h3>
+          <p className=" text-2xl font-bold text-center">
             ₦ {currentBalance?.toLocaleString()}
           </p>
         </div>
       </section>
 
-      <section className=" w-[40%]">
+      <section className=" md:w-[40%]">
         <Cashout
           currentBalance={currentBalance}
           setCurrentBalance={setCurrentBalance}

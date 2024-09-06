@@ -21,7 +21,8 @@ th {
 th, td {
   padding: 10px 20px;
   text-align: left;
-  border-block: 1px solid #076090;
+  border: 1px solid #076090;
+  text-wrap: nowrap;
 
 }
 
@@ -38,7 +39,17 @@ th, td {
   max-width: 400px;
   margin: 0 auto;
   padding: 40px 20px;
-  background: white;
   border-radius: 10px;
   text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Modal from "./Modal";
 import { motion, AnimatePresence } from "framer-motion";
+import { CiBank, CiDiscount1 } from "react-icons/ci";
 
 type Props = {
   currentBalance: number | undefined;
@@ -20,6 +21,8 @@ export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
   const [showInput, setShowInput] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [modalContent, setModalContent] = useState('')
+    const [error, setError] = useState(false);
+
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -31,17 +34,22 @@ export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
       if (newBalance > 0 && parseInt(value) > 0) {
         setCurrentBalance(newBalance);
         setShowModal(true)
+        setError(false)
         setModalContent(
           `you have successfully withdrawn ₦${value} cashback into your bank account`
         );
         inputRef.current.value = "";
       } 
 
-      if(parseInt(value) < 0){
-         alert("Invalid value");
+      if(parseInt(value) < 0 ){
+        setShowModal(true);
+        setError(true);
+         setModalContent("Invalid value");
       }
       if(newBalance<0){
-        alert("Insufficient Cashback");
+         setShowModal(true);
+         setError(true);
+        setModalContent("Insufficient Cashback");
       }     
     }
   };
@@ -50,11 +58,14 @@ export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
     if (currentBalance && currentBalance > 0) {
       setCurrentBalance(0);
       setShowModal(true)
+      setError(false);
         setModalContent(
           `Conratulations! You have successfully converted your ${currentBalance} cashbacks into Promo code for your future bookings`
         );
     } else {
-      alert("Insufficient Cashback");
+       setShowModal(true);
+       setError(true);
+      setModalContent("Insufficient Cashback");
     }
   };
 
@@ -66,7 +77,7 @@ export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
       <AnimatePresence>
         {showInput && (
           <motion.div
-            className=" my-5"
+            className=" my-5 md:flex "
             variants={animate}
             initial="hidden"
             animate="visible"
@@ -74,12 +85,13 @@ export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
           >
             <input
               type="number"
+              inputMode="numeric"
               placeholder="Type amount here"
-              className=" p-2 px-5 outline-none"
+              className=" p-3 md:p-2 w-full md:w-auto px-5 outline-none  "
               ref={inputRef}
             />
             <button
-              className=" rounded p-2 bg-blue text-white"
+              className=" w-full rounded p-2 md:w-auto bg-blue text-white"
               onClick={handleWithdrawal}
             >
               Withdraw
@@ -87,17 +99,18 @@ export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className=" space-x-5  mt-8 w-full">
+      <div className="  flex gap-3  mt-8 w-full">
         <button
-          className=" w-1/3 border-2 rounded p-2 border-blue"
+          className="flex justify-center gap-2 items-center w-[40%] md:w-1/3 min-w-fit border-2 rounded p-2 border-blue"
           onClick={() => setShowInput((prev) => !prev)}
         >
-          Direct
+          <CiBank className="text-xl text-blue" /> Direct
         </button>
         <button
-          className=" w-1/3 border-2 p-2 rounded border-blue"
+          className=" w-[40%] flex justify-center gap-2 items-center md:w-1/3 min-w-fit  border-2 p-2 rounded border-blue"
           onClick={handlePromoConversion}
         >
+          <CiDiscount1 className="text-xl text-blue" />
           To promo code
         </button>
       </div>
@@ -106,6 +119,7 @@ export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
         showModal={showModal}
         content={modalContent}
         setShowModal={setShowModal}
+        error={error}
       />
     </div>
   );

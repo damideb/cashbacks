@@ -18,6 +18,7 @@ const heading = {
 function App() {
 
   const [bookings]= useState<BookingType[]>(bookingDetails)
+ 
   const [totalCashbacks, setTotalCashbacks] = useState<number>();
   const[currentBalance, setCurrentBalance] = useState<number>()
 
@@ -37,7 +38,7 @@ function App() {
 
 
   return (
-    <motion.div className=" bg-secondary w-[90%] mx-auto m-5 rounded-lg p-5 font-serif">
+    <main className=" bg-secondary w-[95%] mx-auto m-5 rounded-lg p-5 font-serif">
       <motion.div variants={heading} initial="hidden" animate='visible'>
         <h1 className="  text-3xl  text-center p-2 font-bold font-sans">
           REWARD SUMMARY
@@ -49,8 +50,8 @@ function App() {
         currentBalance={currentBalance}
         setCurrentBalance={setCurrentBalance}
       />
-      <CashbackHistory bookings={bookings} />
-    </motion.div>
+      <CashbackHistory bookings={bookings}  />
+    </main>
   );
 }
 
