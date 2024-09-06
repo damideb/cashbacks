@@ -1,5 +1,7 @@
 import Cashout from "./Cashout";
 import { motion } from "framer-motion";
+import { GiMoneyStack } from "react-icons/gi";
+import { MdAccountBalanceWallet } from "react-icons/md";
 
 type Props = {
   currentBalance: number | undefined;
@@ -26,14 +28,20 @@ export default function Earnings({currentBalance, totalCashbacks, setCurrentBala
       animate="visible"
     >
       <section className=" flex flex-col sm:flex-row gap-2 ">
-        <div className=" bg-blue w-[250px] h-[200px]  text-white font-sans rounded shadow-lg drop-shadow-md grid place-content-center">
-          <h3 className="  text-xl  py-4">Total Cashbacks:</h3>
+        <div className=" bg-blue w-[250px] gap-2 h-[200px]  text-white font-sans rounded shadow-lg drop-shadow-md grid place-content-center">
+          <h3 className="  text-xl  ">Total Cashbacks:</h3>
+          <div className="  text-secondary grid place-content-center">
+            <GiMoneyStack className=" text-2xl" />
+          </div>
           <p className=" text-2xl font-bold text-center">
             ₦ {totalCashbacks?.toLocaleString()}
           </p>
         </div>
-        <div className=" bg-blue w-[250px] h-[200px] text-white font-sans rounded shadow-lg drop-shadow-md grid place-content-center">
-          <h3 className="  text-xl py-4">Current Balance:</h3>
+        <div className=" bg-blue w-[250px] gap-2 h-[200px] text-white font-sans rounded shadow-lg drop-shadow-md grid place-content-center">
+          <h3 className="  text-xl">Current Balance:</h3>
+          <div className="  text-secondary grid place-content-center">
+            <MdAccountBalanceWallet className=" text-2xl" />
+          </div>
           <p className=" text-2xl font-bold text-center">
             ₦ {currentBalance?.toLocaleString()}
           </p>
