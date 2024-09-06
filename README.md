@@ -21,7 +21,7 @@ cd cashback-history-app
 # Install dependencies
 npm install
 
-## features
+## Features
 
 - View Total Cashbacks earned
 - View Current balance
