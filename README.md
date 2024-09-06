@@ -11,7 +11,7 @@ A simple web application to track cashback earned from bookings.
 
 To install this project locally:
 
-```bash
+
 # Clone the repository
 git clone https://github.com/your-username/cashback-history-app.git
 
