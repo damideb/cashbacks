@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-
 const backdrop = {
   visible: { opacity: 1 },
   hidden: { opacity: 0 },
@@ -16,11 +15,11 @@ const modal = {
 };
 
 type Props = {
-    showModal:boolean,
-    content: string,
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
-    error: boolean
-}
+  showModal: boolean;
+  content: string;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  error: boolean;
+};
 const Modal = ({ showModal, content, setShowModal, error }: Props) => {
   return (
     <AnimatePresence>
@@ -32,10 +31,14 @@ const Modal = ({ showModal, content, setShowModal, error }: Props) => {
           animate="visible"
           exit="hidden"
         >
-          <motion.div className="modal bg-white" variants={modal}>
-            <p className={`${error? 'text-[#FF0000]': 'text-black'}`}>{content}</p>
+          <motion.div className="bg-white max-w-[400px] mx-auto p-10 rounded-lg text-center" variants={modal}>
+            <p className={`${error ? "text-[#FF0000]" : "text-black"}`}>
+              {content}
+            </p>
             <button
-              className={`${error? 'bg-[#FF0000]': 'bg-blue' } px-10 text-white py-3 mt-3 rounded-lg`}
+              className={`${
+                error ? "bg-[#FF0000]" : "bg-blue"
+              } px-10 text-white py-3 mt-3 rounded-lg`}
               onClick={() => setShowModal(false)}
             >
               Close
@@ -46,7 +49,5 @@ const Modal = ({ showModal, content, setShowModal, error }: Props) => {
     </AnimatePresence>
   );
 };
-
-
 
 export default Modal;

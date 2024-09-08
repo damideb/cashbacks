@@ -19,52 +19,57 @@ const animate = {
 
 export default function Cashout({ currentBalance, setCurrentBalance }: Props) {
   const [showInput, setShowInput] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-    const [modalContent, setModalContent] = useState('')
-    const [error, setError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const [error, setError] = useState(false);
 
-
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement >(null);
 
   const handleWithdrawal = () => {
-    const value = inputRef.current?.value 
-    if (value && currentBalance) {
-      const newBalance = currentBalance - parseInt(value);
+    const value = inputRef.current?.value;
 
-      if (newBalance > 0 && parseInt(value) > 0) {
-        setCurrentBalance(newBalance);
-        setShowModal(true)
-        setError(false)
-        setModalContent(
-          `you have successfully withdrawn ₦${value} cashback into your bank account`
-        );
-        inputRef.current.value = "";
-      } 
+    if (value) {
+      const numberValue = parseInt(value);
 
-      if(parseInt(value) < 0 ){
+      if (numberValue <= 0) {
         setShowModal(true);
         setError(true);
-         setModalContent("Invalid value");
+        setModalContent("Please enter a valid amount to withdraw");
       }
-      if(newBalance<0){
-         setShowModal(true);
-         setError(true);
-        setModalContent("Insufficient Cashback");
-      }     
+      if (currentBalance && numberValue > 0) {
+        const newBalance = currentBalance - numberValue;
+
+        if (newBalance >= 0) {
+          // Sufficient balance for withdrawal
+          setCurrentBalance(newBalance);
+          setShowModal(true);
+          setError(false);
+          setModalContent(
+            `You have successfully withdrawn ₦${value.toLocaleString()} cashback into your bank account.`
+          );
+          inputRef.current.value = " "; // Clear the input
+        } else {
+          // Insufficient balance
+          setShowModal(true);
+          setError(true);
+          setModalContent("Insufficient Cashback");
+        }
+   
+      }
     }
   };
 
   const handlePromoConversion = () => {
     if (currentBalance && currentBalance > 0) {
       setCurrentBalance(0);
-      setShowModal(true)
+      setShowModal(true);
       setError(false);
-        setModalContent(
-          `Conratulations! You have successfully converted your ${currentBalance} cashbacks into Promo code for your future bookings`
-        );
+      setModalContent(
+        `Congratulations! You have successfully converted your ${currentBalance} cashbacks into Promo code for your future bookings`
+      );
     } else {
-       setShowModal(true);
-       setError(true);
+      setShowModal(true);
+      setError(true);
       setModalContent("Insufficient Cashback");
     }
   };

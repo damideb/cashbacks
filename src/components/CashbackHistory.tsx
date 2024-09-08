@@ -45,6 +45,7 @@ export default function CashbackHistory({ bookings }: Props) {
 
   const handleSearch = () => {
     const value = searchRef.current?.value;
+    if (!value?.length) return;
     const filteredResult = bookings.filter(
       (bookings) =>
         bookings.bookingId === value ||
@@ -56,11 +57,12 @@ export default function CashbackHistory({ bookings }: Props) {
     } else {
       setError(true);
     }
+    
   };
 
   useEffect(() => {
     setDisplayedBookings(bookings.slice(startView, endview));
-  }, [startView, endview]);
+  }, [startView, endview, bookings]);
 
   return (
     <motion.main

@@ -14,12 +14,14 @@ const animate = {
   visible: {
     x: 0,
     opacity: 1,
-    transition: { delay: 0.6, duration:0.9 },
+    transition: { delay: 0.6, duration: 0.9 },
   },
 };
-export default function Earnings({currentBalance, totalCashbacks, setCurrentBalance}: Props) {
-
-
+export default function Earnings({
+  currentBalance,
+  totalCashbacks,
+  setCurrentBalance,
+}: Props) {
   return (
     <motion.section
       className=" flex md:flex-row justify-center items-center flex-col gap-5 md:justify-between  mt-10   mb-20 md:items-start"

@@ -35,13 +35,6 @@ th, td {
   background: rgba(0,0,0,0.5);
   z-index: 1;
 }
-.modal{
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  border-radius: 10px;
-  text-align: center;
-}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
